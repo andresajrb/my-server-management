@@ -4,7 +4,7 @@ const MY_EXPERIENCE_APP_URL = process.env.MY_EXPERIENCE_APP_URL
 
 export const getCorsOptions = (): CorsOptions => {
     const whitelist: string[] = [];
-    if (process.env.ENVIRONMENT === 'local') {
+    if (process.env.NODE_ENV === 'local') {
         whitelist.push('http://localhost:3000');
     }
     if (MY_EXPERIENCE_APP_URL) {
@@ -22,7 +22,7 @@ export const getCorsOptions = (): CorsOptions => {
 }
 
 export const getVersionURL = (): string => {
-    if (process.env.ENVIRONMENT === 'local') {
+    if (process.env.NODE_ENV === 'local') {
         return '/api/local';
     }
     return `/api/v${process.env.VERSION || '1'}`;
