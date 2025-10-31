@@ -3,9 +3,6 @@ import { CorsOptions } from 'cors';
 
 dotenv.config();
 
-
-const MY_EXPERIENCE_APP_URL = process.env.MY_EXPERIENCE_APP_URL
-
 type NodeEnv = 'local' | 'production';
 
 type AppEnv = {
@@ -39,15 +36,15 @@ export const getCorsOptions = (): CorsOptions => {
     if (process.env.NODE_ENV === 'local') {
         whitelist.push('http://localhost:3000');
     }
-    if (MY_EXPERIENCE_APP_URL) {
-        whitelist.push(MY_EXPERIENCE_APP_URL);
+    if (env.MY_EXPERIENCE_APP_URL) {
+        whitelist.push(env.MY_EXPERIENCE_APP_URL);
     }
     return {
         origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
             if (whitelist.indexOf(origin || '') !== -1 || !origin) {
                 callback(null, true);
             } else {
-                callback(new Error('Not allowed by CORS' + origin));
+                callback(new Error('Not allowed by CORS ' + origin));
             }
         }
     }
