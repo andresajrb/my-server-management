@@ -22,7 +22,7 @@ type AppEnv = {
 }
 
 export const env: AppEnv = {
-    PORT: 3000,
+    PORT: Number(process.env.PORT) || 3000,
     EMAIL_HOST: 'smtp-relay.brevo.com',
     EMAIL_PORT: 587,
     EMAIL_USER: '9a28b4001@smtp-brevo.com',

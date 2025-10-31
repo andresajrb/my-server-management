@@ -42,7 +42,7 @@ Make sure you have Node.js and npm installed on your machine.
 
 1.  Clone the repository to your local machine:
     ```sh
-    git clone <your-repository-url>
+    git clone https://github.com/andresajrb/my-server-management.git
     ```
 2.  Navigate to the project directory:
     ```sh
@@ -69,8 +69,7 @@ This will start the server with `ts-node`. The server will be running on the por
 This project uses a `.env` file to manage environment variables. Create a `.env` file in the root of the project and add the following variables.
 
 *   `PORT`: The port on which the Express server will run. (e.g., `PORT=3001`)
-*   `EMAIL_USER`: The username for your email service provider (e.g., your Gmail address).
-*   `EMAIL_PASS`: The password or app-specific password for your email service provider.
-*   `MY_EMAIL`: The email address where you want to receive notifications from your applications.
+*   `NODE_ENV`: The environment for running the server, usually `local` (for development) or `production`.
+*   `EMAIL_SMTP_KEY`: The API key o contraseña SMTP para autenticar el envío de correos.
 
 Example `.env` file:
