@@ -44,3 +44,6 @@ jobs:
           region: ${{ env.REGION }}
           image: "${{ env.IMAGE_URL }}"
           flags: '--allow-unauthenticated'
+          env_vars: |
+            NODE_ENV=local
+            EMAIL_SMTP_KEY=${{ secrets.EMAIL_SMTP_KEY }}

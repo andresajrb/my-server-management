@@ -1,11 +1,12 @@
 import { Router, Request, Response } from 'express';
 import emailService from '../../services/emailService';
 import { generateContactEmailHTML } from '../../utils/emailTemplates';
+import { env } from '../../config';
 
 let router = Router();
 
 router.get('/personalinfo', (req: Request, res: Response) => {
-  res.send('Hello World Personal Info');
+  res.send('Hello World Personal Info ' + env.NODE_ENV);
 });
 
 router.post('/send-email', async (req: Request, res: Response) => {
@@ -18,14 +19,7 @@ router.post('/send-email', async (req: Request, res: Response) => {
 
     const htmlBody = generateContactEmailHTML({ name, email, subject, message });
 
-    const recipientEmail = process.env.EMAIL_RECIPIENT
-
-    if (!recipientEmail) {
-      return res.status(400).json({ message: 'Email of recipient not configured.' });
-    }
-
     await emailService.sendEmail({
-      to: recipientEmail,
       subject: `New contact message: ${subject}`,
       html: htmlBody,
     });

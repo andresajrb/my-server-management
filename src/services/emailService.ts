@@ -1,17 +1,17 @@
 import nodemailer from 'nodemailer';
+import { env } from '../config';
 
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: Number(process.env.EMAIL_PORT),
+  host: env.EMAIL_HOST,
+  port: env.EMAIL_PORT,
   secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_SMTP_KEY,
+    user: env.EMAIL_USER,
+    pass: env.EMAIL_SMTP_KEY,
   },
 });
 
 interface MailOptions {
-  to: string;
   subject: string;
   html: string;
 }
@@ -19,7 +19,8 @@ interface MailOptions {
 const sendEmail = async (options: MailOptions) => {
   try {
     const info = await transporter.sendMail({
-      from: process.env.EMAIL_FROM,
+      from: env.EMAIL_FROM,
+      to: env.EMAIL_RECIPIENT,
       ...options,
     });
     return info;
